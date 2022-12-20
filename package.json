@@ -1,0 +1,32 @@
+{
+  "name": "linker",
+  "private": true,
+  "author": "Zielin0",
+  "license": "MIT",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zielin0/linker.git"
+  },
+  "devDependencies": {
+    "@mdi/font": "^7.1.96",
+    "@nuxtjs/eslint-config-typescript": "^12.0.0",
+    "@vue/eslint-config-airbnb-with-typescript": "^7.0.0",
+    "eslint": "^8.30.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "nuxt": "3.0.0",
+    "prisma": "^4.7.1"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.7.1",
+    "sass": "^1.57.0",
+    "vuetify": "^3.0.5"
+  }
+}
