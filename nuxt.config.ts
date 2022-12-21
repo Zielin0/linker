@@ -7,7 +7,7 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      title: 'Linker - l.zielinus.xyz',
+      title: 'Linker - zielinus.xyz',
     },
   },
 });
