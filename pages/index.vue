@@ -3,5 +3,18 @@
     <v-layout class="mt-10 d-flex justify-center text-center">
       <h1>All Public Links</h1>
     </v-layout>
+    <!-- Table goes in here -->
+    <v-layout class="mt-10 d-flex justify-center text-center">
+      <v-hover v-slot="{ isHovering, props }">
+        <NuxtLink
+          class="text-decoration-none"
+          :class="isHovering ? 'text-primary' : 'text-white'"
+          v-bind="props"
+          to="https://github.com/Zielin0/linker"
+        >
+          <v-icon icon="mdi-github"></v-icon>
+        </NuxtLink>
+      </v-hover>
+    </v-layout>
   </v-container>
 </template>
