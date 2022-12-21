@@ -5,4 +5,9 @@ export default defineNuxtConfig({
   build: {
     transpile: ['vuetify'],
   },
+  app: {
+    head: {
+      title: 'Linker - l.zielinus.xyz',
+    },
+  },
 });
