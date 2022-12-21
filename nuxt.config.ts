@@ -6,6 +6,10 @@ export default defineNuxtConfig({
     transpile: ['vuetify'],
   },
   app: {
+    pageTransition: {
+      name: 'page',
+      mode: 'out-in',
+    },
     head: {
       title: 'Linker - zielinus.xyz',
     },
