@@ -15,4 +15,5 @@ model Link {
   alias    String  @db.VarChar(15)
   original String
   public   Boolean
+  views    Int
 }
