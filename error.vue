@@ -7,7 +7,9 @@ const props = defineProps({
 });
 
 useHead({
-  title: `Error ${props.error.statusCode}`,
+  title: `Error ${props.error.statusCode} - ${
+    props.error.statusMessage.split(':')[0]
+  }`,
 });
 
 const redirectError = () => clearError({ redirect: '/' });
