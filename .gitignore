@@ -32,7 +32,6 @@ data/
 # Databases
 *.sqlite
 *.db
-db.*
 
 # Configs
 config.*
