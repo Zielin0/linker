@@ -16,12 +16,15 @@ const redirectError = () => clearError({ redirect: '/' });
 <template>
   <v-container class="w-75 mt-16">
     <v-layout class="d-flex justify-center text-center">
-      <h1>Error {{ props.error.statusCode }}</h1>
+      <h1>
+        Error {{ props.error.statusCode }} -
+        {{ props.error.statusMessage.split(':')[0] }}
+      </h1>
     </v-layout>
     <v-layout class="mt-5 d-flex justify-center text-center">
       <h3>{{ props.error.statusMessage }}</h3>
     </v-layout>
-    <v-layout class="mt-5 mb-2 d-flex justify-center text-center">
+    <v-layout class="mt-10 mb-2 d-flex justify-center text-center">
       <v-btn color="primary" @click.prevent="redirectError">Go Back</v-btn>
     </v-layout>
   </v-container>
