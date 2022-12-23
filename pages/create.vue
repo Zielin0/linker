@@ -1,4 +1,25 @@
 <script lang="ts">
+type Response = {
+  success: boolean;
+  message: string;
+};
+
+const createLink = async (
+  alias: string,
+  target: string,
+  pub: any
+): Promise<Response> => {
+  const { data } = await useFetch('/api/create', {
+    method: 'POST',
+    body: {
+      alias,
+      original: target,
+      public: pub === 'Public',
+    },
+  });
+  return data.value as Response;
+};
+
 export default {
   data: () => ({
     valid: true,
@@ -20,13 +41,21 @@ export default {
     password: '',
     passwordRules: [(v: any) => !!v || 'Password is required'],
     public: false,
+    disabled: true,
+    response: '',
+    success: false,
   }),
   methods: {
     async validate() {
       const { valid } = await (this.$refs.form as any).validate();
 
       if (!valid) return;
-      alert('Form is valid!');
+      createLink(this.alias, this.target, this.public).then((res) => {
+        this.disabled = false;
+        this.response = res.message;
+        this.success = JSON.stringify(res.success) === 'true';
+      });
+
       // Check if all data is successfully inserted into db
       // Then show a span or something with link to shorted url
       // Maybe add a loading circle with short spin time
@@ -77,8 +106,6 @@ export default {
           hide-details
         ></v-checkbox>
 
-        <br />
-
         <v-layout>
           <v-spacer></v-spacer>
           <v-btn
@@ -89,6 +116,18 @@ export default {
             @click.prevent="validate"
             >Shorten</v-btn
           >
+        </v-layout>
+        <v-layout
+          v-if="!disabled"
+          class="d-flex justify-center text-center mt-6"
+        >
+          <span :class="success ? 'text-green' : 'text-red'">
+            {{ $data.response.split("'")[0] }}
+            <b class="text-decoration-underline">{{
+              $data.response.split("'")[1]
+            }}</b>
+            {{ $data.response.split("'")[2] }}
+          </span>
         </v-layout>
       </v-form>
     </v-card>
