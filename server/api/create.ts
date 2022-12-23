@@ -1,7 +1,37 @@
+import prisma from '@/lib/db';
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
+import { createError } from 'h3';
+
 export default defineEventHandler(async (event) => {
   const { req } = event.node;
-  if (req.method !== 'post') return {};
+  if (req.method !== 'POST') {
+    createError({
+      statusCode: 405,
+      statusMessage: `Method not allowed: ${req.method}`,
+    });
+  }
 
-  const body = await readBody(event);
-  return { body };
+  const link = await readBody(event);
+
+  try {
+    await prisma.link.create({ data: { ...link, views: 0 } });
+  } catch (err) {
+    if (err instanceof PrismaClientKnownRequestError) {
+      return {
+        success: false,
+        message: `Link with alias '${link.alias}' already exists.`,
+      };
+    }
+    return {
+      success: false,
+      message: `Failed to create Link with alias '${link.alias}'.`,
+    };
+  }
+
+  await prisma.$disconnect();
+
+  return {
+    success: true,
+    message: `Link with alias '${link.alias}' successfully created!`,
+  };
 });
