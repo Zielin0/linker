@@ -40,7 +40,7 @@ export default {
     ],
     password: '',
     passwordRules: [(v: any) => !!v || 'Password is required'],
-    public: false,
+    pub: false,
     disabled: true,
     response: '',
     success: false,
@@ -50,7 +50,7 @@ export default {
       const { valid } = await (this.$refs.form as any).validate();
 
       if (!valid) return;
-      createLink(this.alias, this.target, this.public).then((res) => {
+      createLink(this.alias, this.target, this.pub).then((res) => {
         this.disabled = false;
         this.response = res.message;
         this.success = JSON.stringify(res.success) === 'true';
@@ -92,7 +92,7 @@ export default {
         ></v-text-field>
 
         <v-checkbox
-          v-model="public"
+          v-model="pub"
           label="Public"
           color="primary"
           value="Public"
