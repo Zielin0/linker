@@ -55,13 +55,6 @@ export default {
         this.response = res.message;
         this.success = JSON.stringify(res.success) === 'true';
       });
-
-      // Check if all data is successfully inserted into db
-      // Then show a span or something with link to shorted url
-      // Maybe add a loading circle with short spin time
-      // Error: class="text-red"
-      // Success: class="text-green"
-      // Optional: replace with text-success or text-error if possible
     },
   },
 };
