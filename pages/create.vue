@@ -116,9 +116,13 @@ export default {
         >
           <span :class="success ? 'text-green' : 'text-red'">
             {{ $data.response.split("'")[0] }}
-            <b class="text-decoration-underline">{{
-              $data.response.split("'")[1]
-            }}</b>
+            <NuxtLink
+              :class="success ? 'text-green' : 'text-red'"
+              class="text-decoration-underline"
+              :to="`/${$data.alias}`"
+            >
+              <b>{{ $data.response.split("'")[1] }}</b>
+            </NuxtLink>
             {{ $data.response.split("'")[2] }}
           </span>
         </v-layout>
