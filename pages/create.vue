@@ -7,7 +7,8 @@ type Response = {
 const createLink = async (
   alias: string,
   target: string,
-  pub: any
+  pub: any,
+  password: string
 ): Promise<Response> => {
   const { data } = await useFetch('/api/create', {
     method: 'POST',
@@ -15,6 +16,7 @@ const createLink = async (
       alias,
       original: target,
       public: pub === 'Public',
+      password,
     },
   });
   return data.value as Response;
@@ -50,11 +52,13 @@ export default {
       const { valid } = await (this.$refs.form as any).validate();
 
       if (!valid) return;
-      createLink(this.alias, this.target, this.pub).then((res) => {
-        this.disabled = false;
-        this.response = res.message;
-        this.success = JSON.stringify(res.success) === 'true';
-      });
+      createLink(this.alias, this.target, this.pub, this.password).then(
+        (res) => {
+          this.disabled = false;
+          this.response = res.message;
+          this.success = JSON.stringify(res.success) === 'true';
+        }
+      );
     },
   },
 };
