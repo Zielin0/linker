@@ -19,6 +19,7 @@ export default defineEventHandler(async (event) => {
     return {
       success: false,
       message: 'Cannot create Link. Invalid password',
+      validPassword: false,
     };
   }
 
@@ -29,11 +30,13 @@ export default defineEventHandler(async (event) => {
       return {
         success: false,
         message: `Link with alias '${link.alias}' already exists.`,
+        validPassword: true,
       };
     }
     return {
       success: false,
       message: `Failed to create Link with alias '${link.alias}'.`,
+      validPassword: true,
     };
   }
 
@@ -42,5 +45,6 @@ export default defineEventHandler(async (event) => {
   return {
     success: true,
     message: `Link with alias '${link.alias}' successfully created!`,
+    validPassword: true,
   };
 });
