@@ -11,7 +11,16 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const link = await readBody(event);
+  const config = useRuntimeConfig();
+
+  const { password, ...link } = await readBody(event);
+
+  if (config.dbPassword !== password) {
+    return {
+      success: false,
+      message: 'Cannot create Link. Invalid password',
+    };
+  }
 
   try {
     await prisma.link.create({ data: { ...link, views: 0 } });
