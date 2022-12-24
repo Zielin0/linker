@@ -20,6 +20,7 @@ const createLink = async (
       password,
     },
   });
+
   return data.value as Response;
 };
 
