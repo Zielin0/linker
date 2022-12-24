@@ -5,6 +5,9 @@ export default defineNuxtConfig({
   build: {
     transpile: ['vuetify'],
   },
+  runtimeConfig: {
+    dbPassword: process.env.NUXT_DB_PASSWORD,
+  },
   app: {
     pageTransition: {
       name: 'page',
