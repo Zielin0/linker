@@ -2,6 +2,7 @@
 type Response = {
   success: boolean;
   message: string;
+  validPassword: boolean;
 };
 
 const createLink = async (
@@ -46,6 +47,7 @@ export default {
     disabled: true,
     response: '',
     success: false,
+    validPassword: false,
   }),
   methods: {
     async validate() {
@@ -57,6 +59,7 @@ export default {
           this.disabled = false;
           this.response = res.message;
           this.success = JSON.stringify(res.success) === 'true';
+          this.validPassword = JSON.stringify(res.validPassword) === 'true';
         }
       );
     },
@@ -118,7 +121,10 @@ export default {
           v-if="!disabled"
           class="d-flex justify-center text-center mt-6"
         >
-          <span :class="success ? 'text-green' : 'text-red'">
+          <span
+            v-if="validPassword"
+            :class="success ? 'text-green' : 'text-red'"
+          >
             {{ $data.response.split("'")[0] }}
             <NuxtLink
               :class="success ? 'text-green' : 'text-red'"
@@ -129,6 +135,7 @@ export default {
             </NuxtLink>
             {{ $data.response.split("'")[2] }}
           </span>
+          <span v-else class="text-red"> {{ $data.response }} </span>
         </v-layout>
       </v-form>
     </v-card>
