@@ -7,7 +7,7 @@
     <v-layout class="mt-10 d-flex justify-center text-center">
       <v-hover v-slot="{ isHovering, props }">
         <NuxtLink
-          class="text-decoration-none mr-2"
+          class="text-decoration-none mr-3"
           :class="
             isHovering ? 'text-primary text-decoration-underline' : 'text-white'
           "
