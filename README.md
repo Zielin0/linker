@@ -1,11 +1,63 @@
 # Linker
 
-**THIS PROJECT IS UNFINISHED**
+![repo-size-badge](https://img.shields.io/github/repo-size/Zielin0/linker?style=flat-square)
+![license-badge](https://img.shields.io/github/license/Zielin0/linker?style=flat-square)
+![stars-badge](https://img.shields.io/github/stars/Zielin0/linker?style=flat-square)
+![activity-badge](https://img.shields.io/github/commit-activity/m/Zielin0/linker?style=flat-square)
+![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=linker&style=flat-square)
 
-Work in progress
+## URL Shortener for Zielino
 
-Tools:
+## Table of contents
+1. [General Info](#general-info)
+2. [Features](#features)
+3. [Running](#running)
+4. [Dependencies](#dependencies)
+5. [License](#license)
 
-- Nuxt
-- Prisma
-- Vuetify
+## General Info
+
+Nuxt + Prisma + Vuetify App
+
+I just wanted to create a URL shortener or just have custom URLs for things.
+
+Deployment: [s.zielinus.xyz](https://s.zielinus.xyz)
+
+## Features
+
+- Connect with Prisma client
+- Show all public links on the index
+- Redirect to target URL on s.zielinus.xyz/:alias (If doesn't exist throw a 404 error)
+- Create a new Link
+  
+## Running
+
+1. Set up Postgres database with [docker](https://www.docker.com/).
+
+  ```shell
+  $ docker-compose up -d
+  ```
+
+2. Install all dependencies with [node](https://nodejs.org/en/).
+  
+  ```shell
+  $ npm i
+  ```
+
+3. Run the app in development mode.
+
+  ```shell
+  $ npm run dev
+  ```
+
+4. App should be up on [localhost:3000](http://localhost:3000)
+
+## Dependencies
+
+- [Nuxt](https://nuxt.com/)
+- [Vue](https://vuejs.org/)
+- [Prisma](https://www.prisma.io/)
+- [Vuetify](https://next.vuetifyjs.com/en/)
+
+## License
+This project is under the [MIT](./LICENSE) License.
