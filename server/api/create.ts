@@ -1,5 +1,4 @@
 import prisma from '@/lib/db';
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime/index';
 import { createError } from 'h3';
 
 export default defineEventHandler(async (event) => {
@@ -26,13 +25,6 @@ export default defineEventHandler(async (event) => {
   try {
     await prisma.link.create({ data: { ...link } });
   } catch (err) {
-    if (err instanceof PrismaClientKnownRequestError) {
-      return {
-        success: false,
-        message: `Link with alias '${link.alias}' already exists.`,
-        validPassword: true,
-      };
-    }
     return {
       success: false,
       message: `Failed to create Link with alias '${link.alias}'.`,
