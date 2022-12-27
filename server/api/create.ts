@@ -1,5 +1,5 @@
 import prisma from '@/lib/db';
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime/index';
 import { createError } from 'h3';
 
 export default defineEventHandler(async (event) => {
