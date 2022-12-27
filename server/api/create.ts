@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
 
   const { password, ...link } = await readBody(event);
 
-  if (config.dbPassword !== password) {
+  if (config.dbPassword.toString() !== password.toString()) {
     return {
       success: false,
       message: 'Cannot create Link. Invalid password',
