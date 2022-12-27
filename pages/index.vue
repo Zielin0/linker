@@ -35,13 +35,12 @@ export default {
     </v-layout>
 
     <v-layout class="d-flex justify-center text-center mt-8">
-      <v-table v-if="$data.success" class="w-50">
+      <v-table v-if="$data.success" class="w-25">
         <thead>
           <tr>
             <th class="text-left">ID</th>
             <th class="text-left">Alias</th>
             <th class="text-left">Target URL</th>
-            <th class="text-left">Views</th>
           </tr>
         </thead>
         <tbody>
@@ -57,7 +56,6 @@ export default {
                 link.original
               }}</NuxtLink>
             </td>
-            <td class="text-left">{{ link.views }}</td>
           </tr>
         </tbody>
       </v-table>
