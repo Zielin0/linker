@@ -24,7 +24,7 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
-    await prisma.link.create({ data: { ...link, views: 0 } });
+    await prisma.link.create({ data: { ...link } });
   } catch (err) {
     if (err instanceof PrismaClientKnownRequestError) {
       return {
