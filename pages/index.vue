@@ -35,7 +35,7 @@ export default {
     </v-layout>
 
     <v-layout class="d-flex justify-center text-center mt-8">
-      <v-table v-if="$data.success" class="w-25">
+      <v-table v-if="$data.success" class="w-auto">
         <thead>
           <tr>
             <th class="text-left">ID</th>
