@@ -44,13 +44,20 @@ Deployment: [s.zielinus.xyz](https://s.zielinus.xyz)
   $ npm i
   ```
 
-3. Run the app in development mode.
+3. Generate and migrate database with prisma.
+
+  ```shell
+  $ npx prisma generate
+  $ npx prisma migrate dev --name init
+  ```
+
+4. Run the app in development mode.
 
   ```shell
   $ npm run dev
   ```
 
-4. App should be up on [localhost:3000](http://localhost:3000)
+5. App should be up on [localhost:3000](http://localhost:3000)
 
 ## Dependencies
 
