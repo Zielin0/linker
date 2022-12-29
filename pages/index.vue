@@ -1,10 +1,8 @@
 <script lang="ts">
-import { Link } from '@prisma/client';
-
 type Response = {
   success: boolean;
   message?: string;
-  links?: Link[];
+  links?: any[];
 };
 
 const getPublicLinks = async (): Promise<Response> => {
@@ -12,7 +10,7 @@ const getPublicLinks = async (): Promise<Response> => {
   return data.value as Response;
 };
 
-const linkArr: Link[] = [];
+const linkArr: any[] = [];
 
 export default {
   data: () => ({
@@ -47,9 +45,7 @@ export default {
           <tr v-for="link in links" :key="link.alias">
             <td class="text-left">{{ link.id }}.</td>
             <td class="text-left">
-              <NuxtLink class="text-white" :to="`/${link.alias}`">{{
-                link.alias
-              }}</NuxtLink>
+              {{ link.alias }}
             </td>
             <td class="text-left">
               <NuxtLink class="text-white" :to="link.original">{{
