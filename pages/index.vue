@@ -17,6 +17,16 @@ export default {
     links: linkArr,
     success: false,
   }),
+  head: {
+    meta: [
+      { name: 'theme-color', content: '#789b3c' },
+      { property: 'og:image', content: 'https://s.zielinus.xyz/favicon.png' },
+      { property: 'og:url', content: 'https://s.zielinus.xyz' },
+      { property: 'og:title', content: 'Linker' },
+      { property: 'og:site_name', content: 's.zielinus.xyz' },
+      { property: 'og:description', content: 'Linker - zielinus.xyz' },
+    ],
+  },
   created() {
     getPublicLinks().then((res) => {
       this.success = JSON.stringify(res.success) === 'true';

@@ -16,6 +16,10 @@ export default defineNuxtConfig({
     head: {
       title: 'Linker - zielinus.xyz',
       link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }],
+      meta: [
+        { name: 'description', content: 'Linker - zielinus.xyz' },
+        { name: 'author', content: 'Zielino' },
+      ],
     },
   },
 });
