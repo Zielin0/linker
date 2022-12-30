@@ -51,10 +51,11 @@ Deployment: [s.zielinus.xyz](https://s.zielinus.xyz)
   $ npx prisma migrate dev --name init
   ```
 
-4. Run the app in development mode.
+4. Build and run the app.
 
   ```shell
-  $ npm run dev
+  $ npm run build
+  $ npm run preview
   ```
 
 5. App should be up on [localhost:3000](http://localhost:3000)
