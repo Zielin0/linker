@@ -5,13 +5,18 @@ type Response = {
   validPassword: boolean;
 };
 
+type CreateLink = {
+  data: Response;
+  pending: boolean;
+};
+
 const createLink = async (
   alias: string,
   target: string,
   pub: any,
   password: string
-): Promise<Response> => {
-  const { data } = await useFetch('/api/create', {
+): Promise<CreateLink> => {
+  const { data, pending } = await useFetch('/api/create', {
     method: 'POST',
     body: {
       alias,
@@ -21,7 +26,10 @@ const createLink = async (
     },
   });
 
-  return data.value as Response;
+  return {
+    data: data.value as Response,
+    pending: pending as unknown as boolean,
+  };
 };
 
 export default {
@@ -45,6 +53,7 @@ export default {
     password: '',
     passwordRules: [(v: any) => !!v || 'Password is required'],
     pub: false,
+    loading: true,
     disabled: true,
     response: '',
     success: false,
@@ -58,9 +67,11 @@ export default {
       createLink(this.alias, this.target, this.pub, this.password).then(
         (res) => {
           this.disabled = false;
-          this.response = res.message;
-          this.success = JSON.stringify(res.success) === 'true';
-          this.validPassword = JSON.stringify(res.validPassword) === 'true';
+          this.response = res.data.message;
+          this.success = JSON.stringify(res.data.success) === 'true';
+          this.validPassword =
+            JSON.stringify(res.data.validPassword) === 'true';
+          this.loading = res.pending;
         }
       );
     },
@@ -122,21 +133,28 @@ export default {
           v-if="!disabled"
           class="d-flex justify-center text-center mt-6"
         >
-          <span
-            v-if="validPassword"
-            :class="success ? 'text-green' : 'text-red'"
-          >
-            {{ $data.response.split("'")[0] }}
-            <NuxtLink
+          <v-progress-linear
+            v-if="loading"
+            indeterminate
+            color="primary"
+          ></v-progress-linear>
+          <div v-else>
+            <span
+              v-if="validPassword"
               :class="success ? 'text-green' : 'text-red'"
-              class="text-decoration-underline"
-              :to="`/${$data.alias}`"
             >
-              <b>{{ $data.response.split("'")[1] }}</b>
-            </NuxtLink>
-            {{ $data.response.split("'")[2] }}
-          </span>
-          <span v-else class="text-red"> {{ $data.response }} </span>
+              {{ $data.response.split("'")[0] }}
+              <NuxtLink
+                :class="success ? 'text-green' : 'text-red'"
+                class="text-decoration-underline"
+                :to="`/${$data.alias}`"
+              >
+                <b>{{ $data.response.split("'")[1] }}</b>
+              </NuxtLink>
+              {{ $data.response.split("'")[2] }}
+            </span>
+            <span v-else class="text-red"> {{ $data.response }} </span>
+          </div>
         </v-layout>
       </v-form>
     </v-card>
