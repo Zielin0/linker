@@ -133,11 +133,7 @@ export default {
           v-if="!disabled"
           class="d-flex justify-center text-center mt-6"
         >
-          <v-progress-linear
-            v-if="loading"
-            indeterminate
-            color="primary"
-          ></v-progress-linear>
+          <span v-if="loading" class="text-primary">Creating...</span>
           <div v-else>
             <span
               v-if="validPassword"
